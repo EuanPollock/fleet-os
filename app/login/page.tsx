@@ -130,18 +130,22 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center bg-[#07152d] px-6 py-10 text-white">
       <div className="w-full max-w-md">
         <p className="mb-3 font-bold tracking-[0.25em] text-green-400">
-          {isCreatingAccount ? "JOIN THE LEAGUE" : "WELCOME BACK"}
+          {isCreatingAccount ? "CREATE ACCOUNT" : "WELCOME TO FLEETOS"}
         </p>
 
         <h1 className="mb-2 text-4xl font-bold">
-          Premier Picks
+          FleetOS
         </h1>
 
-        <p className="mb-8 text-slate-400">
-          {isCreatingAccount
-            ? "Create your account and get ready to make your predictions."
-            : "Sign in to make your predictions, track your points and climb the table."}
-        </p>
+        <h1 className="mb-2 text-4xl font-bold">
+  FleetOS
+</h1>
+
+<p className="mb-8 text-slate-400">
+  {isCreatingAccount
+    ? "Create your FleetOS account."
+    : "Sign in to manage your fleet, drivers and compliance from one place."}
+</p>
 
         <form
           onSubmit={
