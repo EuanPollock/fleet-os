@@ -1,0 +1,39 @@
+export default function DashboardPage() {
+  return (
+    <main className="min-h-screen bg-slate-100 p-10">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="text-4xl font-bold">
+          FleetOS
+        </h1>
+
+        <p className="mt-2 text-slate-600">
+          Fleet Management Dashboard
+        </p>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-4">
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-slate-500">Vehicles</p>
+            <h2 className="mt-2 text-3xl font-bold">48</h2>
+          </div>
+
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-slate-500">Drivers</p>
+            <h2 className="mt-2 text-3xl font-bold">52</h2>
+          </div>
+
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-slate-500">Open Defects</p>
+            <h2 className="mt-2 text-3xl font-bold text-red-600">3</h2>
+          </div>
+
+          <div className="rounded-2xl bg-white p-6 shadow">
+            <p className="text-slate-500">Compliance</p>
+            <h2 className="mt-2 text-3xl font-bold text-green-600">
+              96%
+            </h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
