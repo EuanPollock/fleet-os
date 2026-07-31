@@ -152,24 +152,22 @@ export default function LoginPage() {
           className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl"
         >
           {isCreatingAccount && (
-            <>
-              className="mb-2 block text-sm font-semibold text-slate-700"
-                First name
-              </label>
+  <>
+    <label className="mb-2 block text-sm font-semibold text-slate-700">
+      First name
+    </label>
 
-              <input
-                type="text"
-                required
-                autoComplete="given-name"
-                value={firstName}
-                onChange={(event) =>
-                  setFirstName(event.target.value)
-                }
-                placeholder="Your first name"
-                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition"
-              />
+    <input
+      type="text"
+      required
+      autoComplete="given-name"
+      value={firstName}
+      onChange={(event) => setFirstName(event.target.value)}
+      placeholder="Your first name"
+      className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition"
+    />
 
-              <label className="mb-2 block font-semibold">
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
                 Last name
               </label>
 
@@ -182,7 +180,7 @@ export default function LoginPage() {
                   setLastName(event.target.value)
                 }
                 placeholder="Your last name"
-                className="mb-5 w-full rounded-xl bg-white px-4 py-4 text-slate-950 outline-none"
+                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition"
               />
             </>
           )}
