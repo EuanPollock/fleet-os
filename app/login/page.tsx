@@ -127,17 +127,17 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#07152d] px-6 py-10 text-white">
-      <div className="w-full max-w-md">
-        <p className="mb-3 font-bold tracking-[0.25em] text-green-400">
+    <main className="flex min-h-screen items-center justify-center bg-slate-100 px-6 py-10">
+      <div className="w-full max-w-lg">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
           {isCreatingAccount ? "CREATE ACCOUNT" : "WELCOME TO FLEETOS"}
         </p>
 
-        <h1 className="mb-2 text-4xl font-bold">
+        <h1 className="text-5xl font-extrabold tracking-tight text-slate-900">
           FleetOS
         </h1>
 
-<p className="mb-8 text-slate-400">
+<p className="mt-3 mb-10 text-lg leading-7 text-slate-600">
   {isCreatingAccount
     ? "Create your FleetOS account."
     : "Sign in to manage your fleet, drivers and compliance from one place."}
@@ -149,11 +149,11 @@ export default function LoginPage() {
               ? handleCreateAccount
               : handleLogin
           }
-          className="rounded-3xl border border-blue-400/40 bg-[#102a54] p-6"
+          className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl"
         >
           {isCreatingAccount && (
             <>
-              <label className="mb-2 block font-semibold">
+              className="mb-2 block text-sm font-semibold text-slate-700"
                 First name
               </label>
 
@@ -166,7 +166,7 @@ export default function LoginPage() {
                   setFirstName(event.target.value)
                 }
                 placeholder="Your first name"
-                className="mb-5 w-full rounded-xl bg-white px-4 py-4 text-slate-950 outline-none"
+                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition"
               />
 
               <label className="mb-2 block font-semibold">
@@ -262,7 +262,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-5 w-full rounded-xl bg-green-400 py-4 font-bold text-slate-950 transition hover:bg-green-300 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-6 w-full rounded-xl bg-slate-900 py-3 font-semibold text-white transition hover:bg-slate-800 disabled:opacity-50"
           >
             {loading
               ? isCreatingAccount
@@ -272,6 +272,15 @@ export default function LoginPage() {
                 ? "Create Account"
                 : "Sign In"}
           </button>
+        <div className="mb-8 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+    <h2 className="text-lg font-semibold text-slate-900">
+        Fleet Management Platform
+    </h2>
+
+    <p className="mt-2 text-sm leading-6 text-slate-600">
+        Manage your vehicles, drivers, compliance, maintenance and reporting from one secure dashboard.
+    </p>
+</div>
         </form>
 
         <div className="mt-6 text-center">
@@ -284,7 +293,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={switchMode}
-            className="mt-2 font-bold text-green-400 hover:text-green-300"
+            className="mt-2 font-semibold text-blue-600 hover:text-blue-700"
           >
             {isCreatingAccount
               ? "Sign in"
@@ -292,9 +301,15 @@ export default function LoginPage() {
           </button>
         </div>
 
-        <p className="mt-8 text-center text-sm text-slate-500">
-          A PLK Systems Product
-        </p>
+        <div className="mt-10 text-center">
+    <p className="text-sm text-slate-500">
+        Powered by <span className="font-semibold">PLK Systems</span>
+    </p>
+
+    <p className="mt-2 text-xs text-slate-400">
+        FleetOS v1.0
+    </p>
+</div>
       </div>
     </main>
   );
