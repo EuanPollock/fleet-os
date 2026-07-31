@@ -138,7 +138,7 @@ export default function LoginPage() {
           <p className="mb-3 text-sm font-bold tracking-[0.35em] text-blue-600 uppercase">
             {isCreatingAccount
               ? "Create Account"
-              : "Welcome to FleetOS"}
+              : "Welcome to"}
           </p>
 
           <h1 className="text-5xl font-black tracking-tight text-slate-900">
