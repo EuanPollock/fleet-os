@@ -196,7 +196,9 @@ export default function LoginPage() {
       <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-10 shadow-2xl">
         </form>
 
-        <div className="mt-6 text-center">
+</div>
+
+<div className="mt-6 text-center">
           <p className="text-sm text-slate-400">
             {isCreatingAccount
               ? "Already have an account?"
