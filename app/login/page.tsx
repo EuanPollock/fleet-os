@@ -137,10 +137,6 @@ export default function LoginPage() {
           FleetOS
         </h1>
 
-        <h1 className="mb-2 text-4xl font-bold">
-  FleetOS
-</h1>
-
 <p className="mb-8 text-slate-400">
   {isCreatingAccount
     ? "Create your FleetOS account."
