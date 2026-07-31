@@ -20,38 +20,37 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  function resetMessages() {
+  function clearMessages() {
     setError("");
     setMessage("");
   }
 
-  function switchMode() {
-    resetMessages();
-    setIsCreatingAccount((current) => !current);
+  function toggleMode() {
+    clearMessages();
+    setIsCreatingAccount(!isCreatingAccount);
     setPassword("");
     setConfirmPassword("");
   }
 
-  async function handleLogin(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleLogin(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-    resetMessages();
+    clearMessages();
     setLoading(true);
 
-    const { error: loginError } =
-      await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
-      });
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
 
     setLoading(false);
 
-    if (loginError) {
-      setError(loginError.message);
+    if (error) {
+      setError(error.message);
       return;
     }
 
@@ -60,52 +59,47 @@ export default function LoginPage() {
   }
 
   async function handleCreateAccount(
-    event: FormEvent<HTMLFormElement>
+    e: FormEvent<HTMLFormElement>
   ) {
-    event.preventDefault();
+    e.preventDefault();
 
-    resetMessages();
+    clearMessages();
 
-    const cleanFirstName = firstName.trim();
-    const cleanLastName = lastName.trim();
-    const cleanEmail = email.trim().toLowerCase();
-
-    if (!cleanFirstName || !cleanLastName) {
+    if (!firstName.trim() || !lastName.trim()) {
       setError("Please enter your first and last name.");
       return;
     }
 
     if (password.length < 8) {
-      setError("Your password must contain at least 8 characters.");
+      setError("Password must contain at least 8 characters.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("The passwords do not match.");
+      setError("Passwords do not match.");
       return;
     }
 
     setLoading(true);
 
-    const { data, error: signUpError } =
-      await supabase.auth.signUp({
-        email: cleanEmail,
-        password,
-        options: {
-          data: {
-            first_name: cleanFirstName,
-            last_name: cleanLastName,
-            full_name: `${cleanFirstName} ${cleanLastName}`,
-          },
-          emailRedirectTo:
-            "https://playpremierpicks.co.uk/login",
+    const { data, error } = await supabase.auth.signUp({
+      email: email.trim().toLowerCase(),
+      password,
+      options: {
+        data: {
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
+          full_name: `${firstName.trim()} ${lastName.trim()}`,
         },
-      });
+        emailRedirectTo:
+  "https://your-fleetos.vercel.app/login",
+      },
+    });
 
     setLoading(false);
 
-    if (signUpError) {
-      setError(signUpError.message);
+    if (error) {
+      setError(error.message);
       return;
     }
 
@@ -116,7 +110,7 @@ export default function LoginPage() {
     }
 
     setMessage(
-      "Account created. Check your email and click the confirmation link before signing in."
+      "Your account has been created. Please verify your email before signing in."
     );
 
     setFirstName("");
@@ -127,105 +121,208 @@ export default function LoginPage() {
   }
 
   return (
-  <main className="min-h-screen bg-slate-100">
-    <div className="mx-auto flex min-h-screen max-w-7xl">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-6 py-12">
 
-      {/* LEFT SIDE */}
+      <div className="absolute inset-0 overflow-hidden">
 
-      <div className="hidden w-1/2 flex-col justify-center px-16 lg:flex">
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-blue-100 blur-3xl opacity-60" />
 
-        <p className="mb-4 text-sm font-bold uppercase tracking-[0.35em] text-blue-600">
-          FleetOS
-        </p>
-
-        <h1 className="text-6xl font-black leading-tight text-slate-900">
-          Modern Fleet
-          <br />
-          Management
-        </h1>
-
-        <p className="mt-8 max-w-lg text-xl leading-9 text-slate-600">
-          Manage vehicles, drivers, compliance,
-          maintenance and reporting from one
-          secure platform.
-        </p>
-
-        <div className="mt-12 space-y-5">
-
-          <div className="flex items-center gap-3">
-            <span className="text-emerald-500">✓</span>
-            <span className="text-lg text-slate-700">
-              Vehicle Management
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-emerald-500">✓</span>
-            <span className="text-lg text-slate-700">
-              Driver Database
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-emerald-500">✓</span>
-            <span className="text-lg text-slate-700">
-              Compliance Tracking
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-emerald-500">✓</span>
-            <span className="text-lg text-slate-700">
-              Maintenance Scheduling
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-emerald-500">✓</span>
-            <span className="text-lg text-slate-700">
-              Reporting & Analytics
-            </span>
-          </div>
-
-        </div>
+        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-slate-200 blur-3xl opacity-40" />
 
       </div>
 
-      {/* RIGHT SIDE */}
+      <div className="relative w-full max-w-md">
 
-      <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-10 shadow-2xl">
+        <div className="mb-10">
+
+          <p className="mb-3 text-sm font-bold tracking-[0.35em] text-blue-600 uppercase">
+            {isCreatingAccount
+              ? "Create Account"
+              : "Welcome to FleetOS"}
+          </p>
+
+          <h1 className="text-5xl font-black tracking-tight text-slate-900">
+            FleetOS
+          </h1>
+
+          <p className="mt-5 text-lg leading-8 text-slate-600">
+            {isCreatingAccount
+              ? "Create your FleetOS account."
+              : "Manage vehicles, drivers, maintenance and compliance from one premium dashboard."}
+          </p>
+
+        </div>
+
+        <form
+          onSubmit={
+            isCreatingAccount
+              ? handleCreateAccount
+              : handleLogin
+          }
+          className="rounded-3xl border border-slate-200 bg-white p-10 shadow-2xl"
+        >
+                    {isCreatingAccount && (
+            <>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
+                First name
+              </label>
+
+              <input
+                type="text"
+                required
+                autoComplete="given-name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="John"
+                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              />
+
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
+                Last name
+              </label>
+
+              <input
+                type="text"
+                required
+                autoComplete="family-name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Smith"
+                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              />
+            </>
+          )}
+
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Email address
+          </label>
+
+          <input
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="john@company.co.uk"
+            className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+          />
+
+          <label className="mb-2 block text-sm font-semibold text-slate-700">
+            Password
+          </label>
+
+          <input
+            type="password"
+            required
+            minLength={8}
+            autoComplete={
+              isCreatingAccount
+                ? "new-password"
+                : "current-password"
+            }
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="••••••••"
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+          />
+
+          {isCreatingAccount && (
+            <>
+              <label className="mt-5 mb-2 block text-sm font-semibold text-slate-700">
+                Confirm password
+              </label>
+
+              <input
+                type="password"
+                required
+                minLength={8}
+                autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              />
+            </>
+          )}
+
+          {error && (
+            <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+
+          {message && (
+            <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700">
+              {message}
+            </div>
+          )}
+
+          {!isCreatingAccount && (
+            <div className="mt-5 flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 text-slate-600">
+                <input
+                  type="checkbox"
+                  className="rounded border-slate-300"
+                />
+                Remember me
+              </label>
+
+              <button
+                type="button"
+                className="font-medium text-blue-600 hover:text-blue-700"
+              >
+                Forgot password?
+              </button>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="mt-8 w-full rounded-xl bg-slate-900 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {loading
+              ? isCreatingAccount
+                ? "Creating account..."
+                : "Signing in..."
+              : isCreatingAccount
+              ? "Create FleetOS Account"
+              : "Sign In"}
+          </button>
         </form>
 
-</div>
+        <div className="mt-8 text-center">
 
-<div className="mt-6 text-center">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-500">
             {isCreatingAccount
               ? "Already have an account?"
-              : "Don’t have an account?"}
+              : "New to FleetOS?"}
           </p>
 
           <button
             type="button"
-            onClick={switchMode}
-            className="mt-2 font-semibold text-blue-600 hover:text-blue-700"
+            onClick={toggleMode}
+            className="mt-3 font-semibold text-blue-600 hover:text-blue-700"
           >
             {isCreatingAccount
-              ? "Sign in"
+              ? "Sign In"
               : "Create an account"}
           </button>
+
+          <div className="mt-10 border-t border-slate-200 pt-6">
+            <p className="text-sm text-slate-500">
+              Powered by <span className="font-semibold">PLK Systems</span>
+            </p>
+
+            <p className="mt-2 text-xs text-slate-400">
+              FleetOS v1.0
+            </p>
+          </div>
+
         </div>
 
-        <div className="mt-10 text-center">
-    <p className="text-sm text-slate-500">
-        Powered by <span className="font-semibold">PLK Systems</span>
-    </p>
-
-    <p className="mt-2 text-xs text-slate-400">
-        FleetOS v1.0
-    </p>
-</div>
       </div>
+
     </main>
   );
 }
