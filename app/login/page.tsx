@@ -127,158 +127,73 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-100 px-6 py-10">
-      <div className="w-full max-w-lg">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-          {isCreatingAccount ? "CREATE ACCOUNT" : "WELCOME TO FLEETOS"}
+  <main className="min-h-screen bg-slate-100">
+    <div className="mx-auto flex min-h-screen max-w-7xl">
+
+      {/* LEFT SIDE */}
+
+      <div className="hidden w-1/2 flex-col justify-center px-16 lg:flex">
+
+        <p className="mb-4 text-sm font-bold uppercase tracking-[0.35em] text-blue-600">
+          FleetOS
         </p>
 
-        <h1 className="text-5xl font-extrabold tracking-tight text-slate-900">
-          FleetOS
+        <h1 className="text-6xl font-black leading-tight text-slate-900">
+          Modern Fleet
+          <br />
+          Management
         </h1>
 
-<p className="mt-3 mb-10 text-lg leading-7 text-slate-600">
-  {isCreatingAccount
-    ? "Create your FleetOS account."
-    : "Sign in to manage your fleet, drivers and compliance from one place."}
-</p>
+        <p className="mt-8 max-w-lg text-xl leading-9 text-slate-600">
+          Manage vehicles, drivers, compliance,
+          maintenance and reporting from one
+          secure platform.
+        </p>
 
-        <form
-          onSubmit={
-            isCreatingAccount
-              ? handleCreateAccount
-              : handleLogin
-          }
-          className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl"
-        >
-          {isCreatingAccount && (
-  <>
-    <label className="mb-2 block text-sm font-semibold text-slate-700">
-      First name
-    </label>
+        <div className="mt-12 space-y-5">
 
-    <input
-      type="text"
-      required
-      autoComplete="given-name"
-      value={firstName}
-      onChange={(event) => setFirstName(event.target.value)}
-      placeholder="Your first name"
-      className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition"
-    />
+          <div className="flex items-center gap-3">
+            <span className="text-emerald-500">✓</span>
+            <span className="text-lg text-slate-700">
+              Vehicle Management
+            </span>
+          </div>
 
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Last name
-              </label>
+          <div className="flex items-center gap-3">
+            <span className="text-emerald-500">✓</span>
+            <span className="text-lg text-slate-700">
+              Driver Database
+            </span>
+          </div>
 
-              <input
-                type="text"
-                required
-                autoComplete="family-name"
-                value={lastName}
-                onChange={(event) =>
-                  setLastName(event.target.value)
-                }
-                placeholder="Your last name"
-                className="mb-5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 outline-none transition"
-              />
-            </>
-          )}
+          <div className="flex items-center gap-3">
+            <span className="text-emerald-500">✓</span>
+            <span className="text-lg text-slate-700">
+              Compliance Tracking
+            </span>
+          </div>
 
-          <label className="mb-2 block font-semibold">
-            Email
-          </label>
+          <div className="flex items-center gap-3">
+            <span className="text-emerald-500">✓</span>
+            <span className="text-lg text-slate-700">
+              Maintenance Scheduling
+            </span>
+          </div>
 
-          <input
-            type="email"
-            required
-            autoComplete="email"
-            value={email}
-            onChange={(event) =>
-              setEmail(event.target.value)
-            }
-            placeholder="you@example.com"
-            className="mb-5 w-full rounded-xl bg-white px-4 py-4 text-slate-950 outline-none"
-          />
+          <div className="flex items-center gap-3">
+            <span className="text-emerald-500">✓</span>
+            <span className="text-lg text-slate-700">
+              Reporting & Analytics
+            </span>
+          </div>
 
-          <label className="mb-2 block font-semibold">
-            Password
-          </label>
+        </div>
 
-          <input
-            type="password"
-            required
-            minLength={8}
-            autoComplete={
-              isCreatingAccount
-                ? "new-password"
-                : "current-password"
-            }
-            value={password}
-            onChange={(event) =>
-              setPassword(event.target.value)
-            }
-            placeholder="Your password"
-            className={`w-full rounded-xl bg-white px-4 py-4 text-slate-950 outline-none ${
-              isCreatingAccount ? "mb-5" : ""
-            }`}
-          />
+      </div>
 
-          {isCreatingAccount && (
-            <>
-              <label className="mb-2 block font-semibold">
-                Confirm password
-              </label>
+      {/* RIGHT SIDE */}
 
-              <input
-                type="password"
-                required
-                minLength={8}
-                autoComplete="new-password"
-                value={confirmPassword}
-                onChange={(event) =>
-                  setConfirmPassword(event.target.value)
-                }
-                placeholder="Enter your password again"
-                className="w-full rounded-xl bg-white px-4 py-4 text-slate-950 outline-none"
-              />
-            </>
-          )}
-
-          {error && (
-            <p className="mt-4 rounded-lg bg-red-500/15 p-3 text-sm text-red-300">
-              {error}
-            </p>
-          )}
-
-          {message && (
-            <p className="mt-4 rounded-lg bg-green-500/15 p-3 text-sm leading-6 text-green-300">
-              {message}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="mt-6 w-full rounded-xl bg-slate-900 py-3 font-semibold text-white transition hover:bg-slate-800 disabled:opacity-50"
-          >
-            {loading
-              ? isCreatingAccount
-                ? "Creating account..."
-                : "Signing in..."
-              : isCreatingAccount
-                ? "Create Account"
-                : "Sign In"}
-          </button>
-        <div className="mb-8 rounded-2xl border border-blue-100 bg-blue-50 p-5">
-    <h2 className="text-lg font-semibold text-slate-900">
-        Fleet Management Platform
-    </h2>
-
-    <p className="mt-2 text-sm leading-6 text-slate-600">
-        Manage your vehicles, drivers, compliance, maintenance and reporting from one secure dashboard.
-    </p>
-</div>
+      <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-10 shadow-2xl">
         </form>
 
         <div className="mt-6 text-center">
