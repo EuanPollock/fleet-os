@@ -1,39 +1,190 @@
 export default function DashboardPage() {
   return (
-    <main className="min-h-screen bg-slate-100 p-10">
-      <div className="mx-auto max-w-7xl">
-        <h1 className="text-4xl font-bold">
-          FleetOS
-        </h1>
+    <main className="min-h-screen bg-slate-100">
+      <div className="flex">
 
-        <p className="mt-2 text-slate-600">
-          Fleet Management Dashboard
-        </p>
+        {/* Sidebar */}
 
-        <div className="mt-8 grid gap-6 md:grid-cols-4">
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-slate-500">Vehicles</p>
-            <h2 className="mt-2 text-3xl font-bold">48</h2>
+        <aside className="sticky top-0 flex h-screen w-64 flex-col border-r border-slate-200 bg-slate-900 text-white">
+
+          <div className="border-b border-slate-800 px-8 py-8">
+            <h1 className="text-3xl font-bold tracking-tight">
+              FleetOS
+            </h1>
+
+            <p className="mt-1 text-sm text-slate-400">
+              Fleet Management
+            </p>
           </div>
 
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-slate-500">Drivers</p>
-            <h2 className="mt-2 text-3xl font-bold">52</h2>
+          <nav className="flex-1 px-4 py-6">
+
+            <button className="mb-2 w-full rounded-xl bg-blue-600 px-4 py-3 text-left font-semibold">
+              Dashboard
+            </button>
+
+            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Vehicles
+            </button>
+
+            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Drivers
+            </button>
+
+            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Compliance
+            </button>
+
+            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Maintenance
+            </button>
+
+            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Fuel
+            </button>
+
+            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Reports
+            </button>
+
+            <button className="w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
+              Settings
+            </button>
+
+          </nav>
+
+          <div className="border-t border-slate-800 p-6">
+            <p className="text-sm text-slate-400">
+              Logged in as
+            </p>
+
+            <p className="mt-1 font-semibold">
+              Euan Pollock
+            </p>
           </div>
 
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-slate-500">Open Defects</p>
-            <h2 className="mt-2 text-3xl font-bold text-red-600">3</h2>
+        </aside>
+
+        {/* Main */}
+
+        <div className="flex-1 p-10">
+
+          <div className="flex items-center justify-between">
+
+            <div>
+
+              <h2 className="text-4xl font-bold text-slate-900">
+                Good afternoon, Euan 👋
+              </h2>
+
+              <p className="mt-2 text-slate-500">
+                Here's what's happening across your fleet today.
+              </p>
+
+            </div>
+
+            <button className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg hover:bg-blue-700">
+              + Add Vehicle
+            </button>
+
           </div>
 
-          <div className="rounded-2xl bg-white p-6 shadow">
-            <p className="text-slate-500">Compliance</p>
-            <h2 className="mt-2 text-3xl font-bold text-green-600">
-              96%
-            </h2>
+          {/* KPI Cards */}
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-4">
+
+            <div className="rounded-3xl bg-white p-7 shadow-sm">
+              <p className="text-sm text-slate-500">
+                Total Vehicles
+              </p>
+
+              <h3 className="mt-3 text-4xl font-bold">
+                48
+              </h3>
+
+              <p className="mt-2 text-sm text-green-600">
+                +2 this month
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-white p-7 shadow-sm">
+              <p className="text-sm text-slate-500">
+                Vehicles On Road
+              </p>
+
+              <h3 className="mt-3 text-4xl font-bold">
+                42
+              </h3>
+
+              <p className="mt-2 text-sm text-slate-500">
+                87% of fleet
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-white p-7 shadow-sm">
+              <p className="text-sm text-slate-500">
+                Maintenance Due
+              </p>
+
+              <h3 className="mt-3 text-4xl font-bold text-orange-500">
+                5
+              </h3>
+
+              <p className="mt-2 text-sm text-slate-500">
+                Next 30 days
+              </p>
+            </div>
+
+            <div className="rounded-3xl bg-white p-7 shadow-sm">
+              <p className="text-sm text-slate-500">
+                Compliance
+              </p>
+
+              <h3 className="mt-3 text-4xl font-bold text-green-600">
+                96%
+              </h3>
+
+              <p className="mt-2 text-sm text-slate-500">
+                Fleet healthy
+              </p>
+            </div>
+
           </div>
+
+          {/* Charts */}
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+
+            <div className="rounded-3xl bg-white p-8 shadow-sm lg:col-span-2">
+
+              <h3 className="text-xl font-semibold">
+                Fleet Activity
+              </h3>
+
+              <div className="mt-8 flex h-80 items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 text-slate-400">
+                Activity Chart
+              </div>
+
+            </div>
+
+            <div className="rounded-3xl bg-white p-8 shadow-sm">
+
+              <h3 className="text-xl font-semibold">
+                Compliance
+              </h3>
+
+              <div className="mt-8 flex h-80 items-center justify-center rounded-full border-8 border-green-500 text-5xl font-bold">
+                96%
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </main>
   );
+}
 }
