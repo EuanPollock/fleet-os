@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function DashboardPage() {
   return (
     <main className="min-h-screen bg-slate-100">
@@ -19,37 +20,61 @@ export default function DashboardPage() {
 
           <nav className="flex-1 px-4 py-6">
 
-            <button className="mb-2 w-full rounded-xl bg-blue-600 px-4 py-3 text-left font-semibold">
-              Dashboard
-            </button>
+            <Link
+  href="/dashboard"
+  className="mb-2 block w-full rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white"
+>
+  Dashboard
+</Link>
 
-            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Vehicles
-            </button>
+<Link
+  href="/vehicles"
+  className="mb-2 block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Vehicles
+</Link>
 
-            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Drivers
-            </button>
+<Link
+  href="/drivers"
+  className="mb-2 block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Drivers
+</Link>
 
-            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Compliance
-            </button>
+<Link
+  href="/maintenance"
+  className="mb-2 block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Maintenance
+</Link>
 
-            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Maintenance
-            </button>
+<Link
+  href="/compliance"
+  className="mb-2 block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Compliance
+</Link>
 
-            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Fuel
-            </button>
+<Link
+  href="/costs"
+  className="mb-2 block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Costs
+</Link>
 
-            <button className="mb-2 w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Reports
-            </button>
+<Link
+  href="/reports"
+  className="mb-2 block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Reports
+</Link>
 
-            <button className="w-full rounded-xl px-4 py-3 text-left text-slate-300 hover:bg-slate-800">
-              Settings
-            </button>
+<Link
+  href="/settings"
+  className="block w-full rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800"
+>
+  Settings
+</Link>
 
           </nav>
 
@@ -186,5 +211,4 @@ export default function DashboardPage() {
       </div>
     </main>
   );
-}
 }
