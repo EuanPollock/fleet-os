@@ -186,9 +186,48 @@ export default function DashboardPage() {
                 Fleet Activity
               </h3>
 
-              <div className="mt-8 flex h-80 items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 text-slate-400">
-                Activity Chart
-              </div>
+              <div className="mt-8 space-y-4">
+
+  <div className="flex items-center justify-between rounded-2xl border border-slate-200 p-4 hover:bg-slate-50">
+    <div>
+      <p className="font-semibold">SK24 ABC</p>
+      <p className="text-sm text-slate-500">
+        Ford Transit Custom
+      </p>
+    </div>
+
+    <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+      On Road
+    </span>
+  </div>
+
+  <div className="flex items-center justify-between rounded-2xl border border-slate-200 p-4 hover:bg-slate-50">
+    <div>
+      <p className="font-semibold">SJ23 XYZ</p>
+      <p className="text-sm text-slate-500">
+        Mercedes Sprinter
+      </p>
+    </div>
+
+    <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-700">
+      Service Due
+    </span>
+  </div>
+
+  <div className="flex items-center justify-between rounded-2xl border border-slate-200 p-4 hover:bg-slate-50">
+    <div>
+      <p className="font-semibold">SK22 DEF</p>
+      <p className="text-sm text-slate-500">
+        Peugeot Boxer
+      </p>
+    </div>
+
+    <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
+      MOT Due
+    </span>
+  </div>
+
+</div>
 
             </div>
 
@@ -199,7 +238,37 @@ export default function DashboardPage() {
               </h3>
 
               <div className="mt-8 flex h-80 items-center justify-center rounded-full border-8 border-green-500 text-5xl font-bold">
-                96%
+                <div className="space-y-4">
+
+  <div className="flex justify-between">
+    <span>MOT</span>
+    <span className="font-semibold text-green-600">
+      100%
+    </span>
+  </div>
+
+  <div className="flex justify-between">
+    <span>Insurance</span>
+    <span className="font-semibold text-green-600">
+      100%
+    </span>
+  </div>
+
+  <div className="flex justify-between">
+    <span>Road Tax</span>
+    <span className="font-semibold text-orange-500">
+      96%
+    </span>
+  </div>
+
+  <div className="flex justify-between">
+    <span>Servicing</span>
+    <span className="font-semibold text-red-500">
+      88%
+    </span>
+  </div>
+
+</div>
               </div>
 
             </div>
